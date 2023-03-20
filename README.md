@@ -22,7 +22,7 @@ npm i -D nodemon
 |nodemon|	O nodemon é um utilitário de interface de linha de comando (CLI) desenvolvido pelo @rem que encapsula seu aplicativo Node, monitora o sistema de arquivos e reinicia o processo automaticament|
 
 # 🚀 Iniciando o projeto
-node index.js
+```node index.js``` ou ```npm run dev``` (para usar o nodemon)
 
 ## ✅ Detalhes iniciais
 Não esqueça de iniciar o serviço SQL Server Browser.
