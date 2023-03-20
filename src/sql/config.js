@@ -1,3 +1,5 @@
+import dotenv from 'dotenv/config'
+
 export const sqlConfig = {
     user: process.env.DB_USER,
     password: process.env.DB_PWD,
@@ -9,7 +11,7 @@ export const sqlConfig = {
         idleTimeoutMillis: 30000
     },
     options: {
-   encrypt: false, //apenas para o Azure
-   trustServerCertificate: true //Mantenha para server local
+        encrypt: false, //apenas para o Azure
+        trustServerCertificate: true //Mantenha para server local
     }
 }
