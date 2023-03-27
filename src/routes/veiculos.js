@@ -28,9 +28,9 @@ router.get('/', (req, res) => {
  ***************************************/
 router.post('/', (req, res) => {
     sql.connect(sqlConfig).then(pool => {
-        const { placa, nome, descricao, fabricacao, preco } =
-            req.body
-        return pool.request()
+        const { placa, nome, descricao, fabricacao, preco } = req.body
+        return pool
+            .request()
             .input('PLACA', sql.Char(7), placa)
             .input('NOME', sql.VarChar(50), nome)
             .input('DESCRICAO', sql.VarChar(200), descricao)
@@ -45,41 +45,65 @@ router.post('/', (req, res) => {
     })
 })
 
-/***************************************
- * PUT /veiculos
- * Alterar um veículo existente
- ***************************************/
+
+/**********************************************
+ * PUT /veiculos/
+ * Altera um veículo existente
+ **********************************************/
 router.put("/", (req, res) => {
     sql.connect(sqlConfig).then(pool => {
-        const { codigo, placa, nome, descricao, fabricacao, preco } = req.body
-        return pool.request()
-            .input('CODIGO', sql.Int, codigo)
-            .input('PLACA', sql.Char(7), placa)
-            .input('NOME', sql.VarChar(50), nome)
-            .input('DESCRICAO', sql.VarChar(200), descricao)
-            .input('FABRICACAO', sql.Date, fabricacao)
-            .input('PRECO', sql.Numeric, preco)
-            .execute('SP_U_EST_VEICULO')
-    }).then(dados => {
-        res.status(200).json(`Veículo ${placa} alterado com sucesso`)
-    }).catch(err => {
-        res.status(400).json(err.message)
-    })
-})
-/***************************************
- * DELETE /veiculos
- * Remove um veículo pela placa
- ***************************************/
-router.delete(':/placa', (req, res) => {
+      const {codigo, placa, nome, descricao, fabricacao, preco} = req.body
+          return pool
+          .request()
+          .input('CODIGO', sql.Int, codigo)
+          .input('PLACA', sql.Char(7), placa)
+          .input('NOME', sql.VarChar(50), nome)
+          .input('DESCRICAO', sql.VarChar(200), descricao)
+          .input('FABRICACAO', sql.Date, fabricacao)
+          .input('PRECO', sql.Numeric, preco)
+          .execute('SP_U_EST_VEICULO')
+        }).then(dados => {
+          res.status(200).json('Veículo alterado com sucesso!')
+      }).catch(err => {
+          res.status(400).json(err.message) //bad request
+      })
+  })
+/**********************************************
+ * DELETE /veiculos/:placa
+ * Apaga um veículo pela paca
+ **********************************************/
+router.delete("/:placa", (req, res) => {
     sql.connect(sqlConfig).then(pool => {
-        const placa = req.params.placa
-        return pool.request()
-        .input('PLACA', sql.Char(7), placa)
-        .execute('SP_D_EST_VEICULO')
-    }).then(dados => {
-        res.status(200).json(`Veículo ${placa} removido com sucesso`)
-    }).catch(err => {
-        res.status(400).json(err.message)
-    })
+      const placa = req.params.placa
+          return pool.request()
+          .input('PLACA', sql.Char(7), placa)
+          .execute('SP_D_EST_VEICULO')
+        }).then(dados => {
+          res.status(200).json('Veículo excluído com sucesso!')
+      }).catch(err => {
+          res.status(400).json(err.message) //bad request
+      })
+  })
+
+/**********************************************
+ * GET /veiculos/:placa
+ * Lista um único veículo pela placa
+ **********************************************/
+router.get("/:placa", (req, res) => {
+    const placa = req.params.placa
+    try {
+        sql.connect(sqlConfig).then(pool => {
+            return pool.request()
+                .input('FILTRO', sql.Char(7), placa)
+                .execute('SP_S_EST_VEICULO')
+        }).then(dados => {
+            res.status(200).json(dados.recordset)
+        }).catch(err => {
+            res.status(400).json(err) //bad request
+        })
+    } catch (err) {
+        console.error(err)
+    }
 })
+
 export default router

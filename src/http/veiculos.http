@@ -6,6 +6,11 @@ GET {{baseURL}}/veiculos
 Content-Type: application/json
 
 ###
+// GET - Lista um único veículo pela placa
+GET {{baseURL}}/veiculos/ABC7744
+Content-Type: application/json
+
+###
 // POST - Insere um novo veículo
 POST {{baseURL}}/veiculos
 Content-Type: application/json
@@ -27,12 +32,12 @@ Content-Type: application/json
     "codigo": 2,
     "placa": "ABC7744",
     "nome": "Corcel II",
-    "descricao": "Item de colecionador",
+    "descricao": "Item de colecionador muito conservado",
     "fabricacao": "1978-04-01",
     "preco": 28500.00
 }
 
 ###
 // DELETE - Apaga um veículo pela placa
-DELETE {{baseURL}}/veiculos/ABC1234
+DELETE {{baseURL}}/veiculos/ABC1239
 Content-Type: application/json
