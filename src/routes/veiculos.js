@@ -1,6 +1,6 @@
 // API REST dos veículos
 import express from 'express'
-import sql, { pool } from 'mssql'
+import sql from 'mssql'
 import { sqlConfig } from '../sql/config.js'
 
 const router = express.Router()
