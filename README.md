@@ -24,18 +24,21 @@ npm i -D nodemon
 # 🚀 Iniciando o projeto
 ```node index.js``` ou ```npm run dev``` (para usar o nodemon)
 
-## ✅ Detalhes iniciais
-Não esqueça de iniciar o serviço SQL Server Browser.
-Acesse o SQL Configuration Manager, abra SQL Server Network Configuration e habilite o TCP/IP (por default vem desabilitado)
-Vá nas propriedades do protocolo TCP/IP, na aba IP Address e informe o endereço 127.0.0.1 
+## ⌛ Detalhes iniciais junto ao SQL Server
+- Verifique se está habilitada a autenticação via SQL Server, além do Windows
+- Não esqueça de iniciar o serviço SQL Server Browser.
+- Acesse o SQL Configuration Manager, abra SQL Server Network Configuration e habilite o TCP/IP (por default vem desabilitado) (Caso você não localize o SQL Configuration Manager no seu servidor, basta abrir o Menu Iniciar e digitar:
+-SQLServerManager10.msc (SQL Server 2008)
+-SQLServerManager11.msc (SQL Server 2012)
+-SQLServerManager12.msc (SQL Server 2014)
+-SQLServerManager13.msc (SQL Server 2016)
+-SQLServerManager14.msc (SQL Server 2017)
+-SQLServerManager15.msc (SQL Server 2019)
+- Vá nas propriedades do protocolo TCP/IP, na aba IP Address e verifique se está habilitado para o endereço 127.0.0.1 
 ## 👉 Instalação
 Rode os scripts localizados na pasta src/sql
 Instale as dependências através do npm i
 
-## 🤖 Crie a UI que irá consumir a API REST
-A forma mais simples e rápida é utilizar o [ChatGPT](https://chat.openai.com)
+## 🤖 UI que irá consumir a API REST
 
-Eis um exemplo de busca:
-
-_Crie uma página html com bootstrap que liste os registros vindos da API https://localhost:4000/api/veiculos e que permita editá-los e enviá-los novamente via PUT para a mesma url
-O veiculo terá código, placa, nome, descrição, data de fabricação e preço._
+Na pasta `public` tem um exemplo bem simples de uma página HTML consumindo a API criada.
