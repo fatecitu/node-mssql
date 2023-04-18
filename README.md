@@ -28,12 +28,14 @@ npm i -D nodemon
 - Verifique se está habilitada a autenticação via SQL Server, além do Windows
 - Não esqueça de iniciar o serviço SQL Server Browser.
 - Acesse o SQL Configuration Manager, abra SQL Server Network Configuration e habilite o TCP/IP (por default vem desabilitado) (Caso você não localize o SQL Configuration Manager no seu servidor, basta abrir o Menu Iniciar e digitar:
+```
 -SQLServerManager10.msc (SQL Server 2008)
 -SQLServerManager11.msc (SQL Server 2012)
 -SQLServerManager12.msc (SQL Server 2014)
 -SQLServerManager13.msc (SQL Server 2016)
 -SQLServerManager14.msc (SQL Server 2017)
 -SQLServerManager15.msc (SQL Server 2019)
+```
 - Vá nas propriedades do protocolo TCP/IP, na aba IP Address e verifique se está habilitado para o endereço 127.0.0.1 
 ## 👉 Instalação
 Rode os scripts localizados na pasta src/sql
